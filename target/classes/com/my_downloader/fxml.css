@@ -1,0 +1,10 @@
+.roundedButton {
+  -fx-background-radius: 10em;
+  -fx-background-image: url("/images/add.png");
+}
+
+.invisibleTextField {
+   -fx-focus-color: transparent;
+   -fx-text-box-border: transparent;
+   -fx-background-color: transparent;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="668.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.my_downloader.MainUI">
+   <children>
+      <MenuBar prefHeight="29.0" prefWidth="668.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem id="openMenu" mnemonicParsing="false" text="Open" />
+                  <MenuItem id="saveMenu" mnemonicParsing="false" text="Save" />
+                  <MenuItem id="setPathMenu" mnemonicParsing="false" onAction="#openFileSelectorUI" text="Set Path" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem id="deleteMenu" mnemonicParsing="false" text="Delete Item" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem id="aboutMenu" mnemonicParsing="false" text="About" />
+                  <MenuItem id="supportMenu" mnemonicParsing="false" text="Support" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="View">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Total Downloads" />
+                  <MenuItem mnemonicParsing="false" text="Disk Usage" />
+                  <MenuItem mnemonicParsing="false" text="Schedule" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <TextField focusTraversable="false" layoutX="51.0" layoutY="92.0" prefHeight="35.0" prefWidth="449.0" promptText="Enter URL" />
+      <DatePicker focusTraversable="false" layoutX="53.0" layoutY="164.0" prefHeight="35.0" prefWidth="308.0" promptText="Select Date" />
+      <ComboBox focusTraversable="false" layoutX="53.0" layoutY="245.0" prefHeight="35.0" prefWidth="308.0" />
+      <Button focusTraversable="false" layoutX="313.0" layoutY="433.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="110.0" text="ADD" />
+      <CheckBox focusTraversable="false" layoutX="53.0" layoutY="327.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" text="Send Notification" />
+      <Separator layoutX="17.0" layoutY="69.0" prefHeight="0.0" prefWidth="639.0" />
+      <Separator layoutX="17.0" layoutY="495.0" prefHeight="3.0" prefWidth="631.0" />
+   </children>
+</AnchorPane>
