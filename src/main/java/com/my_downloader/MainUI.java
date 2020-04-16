@@ -1,17 +1,17 @@
 package com.my_downloader;
 
+import com.my_downloader.ComboList.ComboList;
+import com.my_downloader.dao.MainUIDao;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
@@ -24,20 +24,18 @@ public class MainUI {
     private static Parent parent;
     private static Stage stage;
     private static Scene scene;
-
+    @FXML
+    public ComboBox downloadTime;
 
     @FXML
-    private void onClick(ActionEvent actionEvent) throws IOException {
-     System.out.print("Hello" + ((Button)actionEvent.getSource()).getId());
-     Button btn = App.getButtonElement("#searchBtn");
+    public void initialize() throws IOException {
+        downloadTime.setItems(FXCollections.observableArrayList(new ComboList("Peek","_peek").getItem(),new ComboList("Off-Peek","_offPeek").getItem()));
+        downloadTime.setValue(new ComboList("Peek","_peek").getItem());
     }
 
     @FXML
-    private void startDownload(ActionEvent actionEvent) throws  IOException {
-        TextField textField = App.getTextField("#downloadLink");
-        System.out.println(textField.getText());
-        new Thread(new Download(textField.getText(),defaultFilePath,textField)).start();
-//        new Download(textField.getText().toString(), defaultFilePath).run();
+    public void addItem(ActionEvent actionEvent) throws IOException {
+
     }
 
     public void checkAvailability() throws IOException {
@@ -54,31 +52,6 @@ public class MainUI {
     }
 
     @FXML
-    public void openVideoDescriptionUI(ActionEvent actionEvent) throws IOException {
-
-    }
-
-    @FXML
-    public void openViewHistoryUI(ActionEvent actionEvent) throws IOException {
-
-    }
-
-    @FXML
-    public void openDownloadStatUI(ActionEvent actionEvent) throws IOException {
-
-    }
-
-    @FXML
-    public void openSchedulerUI(ActionEvent actionEvent) throws IOException {
-
-    }
-
-    @FXML
-    public void openViewStorageStat(ActionEvent actionEvent) throws IOException {
-
-    }
-
-    @FXML
 
     public static void closeStage(String path) throws IOException {
         defaultFilePath = path;
@@ -90,7 +63,4 @@ public class MainUI {
         TextField textField = (TextField) scene.lookup(id);
         return textField;
     }
-
-
-
 }
