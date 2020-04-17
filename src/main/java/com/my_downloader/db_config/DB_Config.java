@@ -34,17 +34,6 @@ public class DB_Config {
         }
         finally
         {
-            try
-            {
-                if(connection != null)
-                    connection.close();
-            }
-            catch(SQLException e)
-            {
-                // connection close failed.
-                System.err.println(e);
-            }
-
             return connection;
         }
 

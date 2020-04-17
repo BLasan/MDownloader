@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class MainUI {
 
@@ -26,16 +28,36 @@ public class MainUI {
     private static Scene scene;
     @FXML
     public ComboBox downloadTime;
+    @FXML
+    public TextField downloadUrl;
+    @FXML
+    public DatePicker downloadDate;
+    @FXML
+    public CheckBox downloadNotify;
 
     @FXML
     public void initialize() throws IOException {
+        LocalDate today = LocalDate.now();
         downloadTime.setItems(FXCollections.observableArrayList(new ComboList("Peek","_peek").getItem(),new ComboList("Off-Peek","_offPeek").getItem()));
         downloadTime.setValue(new ComboList("Peek","_peek").getItem());
+        downloadDate.setValue(today);
     }
 
     @FXML
-    public void addItem(ActionEvent actionEvent) throws IOException {
-
+    public void addItem(ActionEvent actionEvent) throws IOException,Exception {
+        String url = downloadUrl.getText();
+        Date date = Date.valueOf(downloadDate.getValue());
+        String time = String.valueOf(downloadTime.getValue());
+        boolean isNotify = downloadNotify.isSelected();
+        System.out.println(url+" "+date+" "+time+" "+isNotify);
+        boolean isSuccess = new MainUIDao().addScheduler(url,date,time,isNotify);
+        if(isSuccess) {
+            downloadTime.setValue(new ComboList("Peek","_peek").getItem());
+            downloadUrl.setText(null);
+            LocalDate today = LocalDate.now();
+            downloadDate.setValue(today);
+            downloadNotify.setSelected(false);
+        }
     }
 
     public void checkAvailability() throws IOException {
