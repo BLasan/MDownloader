@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -64,8 +66,16 @@ public class App extends Application {
     }
 
     public static void readDB(boolean isRunning) throws Exception {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String timeString = dtf.format(now).substring(0,dtf.format(now).indexOf(':'));
+        System.out.println(timeString);
+        String time;
+        if(Integer.parseInt(timeString) <8) time = "Off-Peak";
+        else time = "Peek";
         dataList = new AppDao().returnDownloadData();
         for(int i=0;i<dataList.size();i++){
+            if(time.equals(dataList.get(i).time))
             new Thread(new Download(dataList.get(i).url,"/home/benura/Desktop/Pesuru-AL")).start();
         }
     }
