@@ -9,12 +9,12 @@ import java.net.URL;
 public class Download implements  Runnable{
     private String link;
     private String filePath;
-    private TextField textField;
+    //private TextField textField;
 
-    public Download(String url , String filePath , TextField textField) {
+    public Download(String url , String filePath) {
        this.link = url;
        this.filePath = filePath;
-       this.textField = textField;
+       //this.textField = textField;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Download implements  Runnable{
         }catch (Exception ex) {
             ex.printStackTrace();
         }finally {
-            textField.clear();
+           // textField.clear();
         }
     }
 

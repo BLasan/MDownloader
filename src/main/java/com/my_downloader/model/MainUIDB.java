@@ -15,13 +15,15 @@ public class MainUIDB {
         char isNotifyCharacter;
         if(isNotify) isNotifyCharacter = 'Y';
         else isNotifyCharacter = 'N';
-        String sql = "INSERT INTO scheduler(date,time,url,progress,isNotify) values(?,?,?,?,?)";
+        //System.out.println(date.getTime());
+        String sql = "INSERT INTO scheduler(date,time,url,progress,isNotify,isRemoved) values(?,?,?,?,?,?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setDate(1, date);
+            pstmt.setLong(1, date.getTime());
             pstmt.setString(2, time);
             pstmt.setString(3,url);
             pstmt.setString(4,"Not Started");
             pstmt.setString(5,String.valueOf(isNotifyCharacter));
+            pstmt.setString(6,String.valueOf('N'));
             pstmt.executeUpdate();
             return true;
         } catch (SQLException e) {
