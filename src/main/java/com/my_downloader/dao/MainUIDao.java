@@ -16,4 +16,7 @@ public class MainUIDao {
         return new MainUIDB().addSchedule(url, date, time, isNotify);
     }
 
+    public boolean updateProgress(int id, String error, String progress) throws Exception {
+        return new MainUIDB().updateProgress(id, error, progress);
+    }
 }

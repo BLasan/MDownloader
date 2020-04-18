@@ -35,4 +35,21 @@ public class MainUIDB {
     public static ArrayList getScheduleData(String url) throws Exception {
         return (ArrayList) list;
     }
+
+    public boolean updateProgress(int id, String error, String progress) throws Exception {
+        String sql = "UPDATE scheduler SET progress=?,error=? WHERE id=?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, progress);
+            pstmt.setString(2, error);
+            pstmt.setInt(3, id);
+            // update
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }

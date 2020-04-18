@@ -23,14 +23,14 @@ public class AppDB {
             java.sql.Date sqlDate = new java.sql.Date(today.getTime());
             java.sql.Date currentDate = Date.valueOf(sqlDate.toString());
             //System.out.println(currentDate.getTime());
-            String sql = "SELECT * from scheduler where date=" + currentDate.getTime();
+            String sql = "SELECT * from scheduler where date=" + currentDate.getTime() + " and progress='Not Started'";
 
             try (Statement stmt = connection.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {
 
                 // loop through the result set
                 while (rs.next()) {
-                    dataList.add(new DownloadDataList(rs.getString("url"),rs.getDate("date"),rs.getString("time"),rs.getString("progress"),rs.getBoolean("isNotify")));
+                    dataList.add(new DownloadDataList(rs.getInt("id"),rs.getString("url"),rs.getDate("date"),rs.getString("time"),rs.getString("progress"),rs.getBoolean("isNotify")));
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());

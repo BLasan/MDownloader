@@ -1,5 +1,9 @@
 package com.my_downloader;
 
+import com.my_downloader.dao.MainUIDao;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
 import java.io.*;
@@ -9,12 +13,15 @@ import java.net.URL;
 public class Download implements  Runnable{
     private String link;
     private String filePath;
+    private int id;
+    private String progress;
+    private String error;
     //private TextField textField;
 
-    public Download(String url , String filePath) {
+    public Download(String url , String filePath, int id) {
        this.link = url;
        this.filePath = filePath;
-       //this.textField = textField;
+       this.id = id;
     }
 
     @Override
@@ -44,6 +51,9 @@ public class Download implements  Runnable{
                     String percent = String.format("%.4f", downloadPercentage);
                     System.out.println("Downloaded" + " " + percent);
                 }
+
+                error = "None";
+                progress = "Completed";
             }
             else{
                 ProcessBuilder pb = new ProcessBuilder("/usr/bin/python3.7","pyth.py",link,filePath);
@@ -60,8 +70,24 @@ public class Download implements  Runnable{
 
         }catch (Exception ex) {
             ex.printStackTrace();
+            error = "Invalid URL";
+            progress = "Failed";
+            System.out.println(id);
+//            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid URL", ButtonType.OK);
+//            alert.showAndWait();
+//            if (alert.getResult() == ButtonType.OK) {
+//                alert.close();
+//            }
+//            System.exit(0);
+
         }finally {
            // textField.clear();
+            try{
+                boolean isUpdated = new MainUIDao().updateProgress(id, error, progress);
+                if(!isUpdated) System.exit(0);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
