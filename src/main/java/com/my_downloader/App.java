@@ -13,6 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.time.LocalDateTime;
@@ -45,6 +46,7 @@ public class App extends Application {
         try{
             DBCONFIG();
             readDB(true);
+            //System.out.println(new File("/home/benura/Desktop/Pesuru-AL").getFreeSpace());
         }catch (Exception exception) {
             exception.printStackTrace();
         }
