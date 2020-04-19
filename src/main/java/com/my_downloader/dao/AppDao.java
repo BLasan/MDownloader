@@ -7,6 +7,11 @@ import java.util.List;
 
 public class AppDao {
 
+    /**
+     * Get download data.
+     * @return Download List.
+     * @throws Exception
+     */
     public List<DownloadDataList> returnDownloadData() throws Exception {
         return new AppDB().returnDownloadData();
     }

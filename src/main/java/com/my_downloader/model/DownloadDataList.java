@@ -10,6 +10,15 @@ public class DownloadDataList {
     public String progress;
     public boolean isNotify;
 
+    /**
+     * Constructor.
+     * @param id
+     * @param url
+     * @param date
+     * @param time
+     * @param progress
+     * @param isNotify
+     */
     public DownloadDataList(int id, String url, Date date, String time, String progress, boolean isNotify) {
         this.url = url;
         this.date = date;

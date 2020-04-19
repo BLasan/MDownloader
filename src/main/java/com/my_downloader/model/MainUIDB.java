@@ -11,6 +11,15 @@ public class MainUIDB {
     public static Connection connection = App.connection;
     public static List list = new ArrayList();
 
+    /**
+     * Add new schedule.
+     * @param url
+     * @param date
+     * @param time
+     * @param isNotify
+     * @return true / false.
+     * @throws Exception
+     */
     public boolean addSchedule(String url, Date date, String time, boolean isNotify) throws Exception {
         char isNotifyCharacter;
         if(isNotify) isNotifyCharacter = 'Y';
@@ -32,10 +41,24 @@ public class MainUIDB {
         }
     }
 
+    /**
+     * Get schedule data.
+     * @param url
+     * @return ArrayList.
+     * @throws Exception
+     */
     public static ArrayList getScheduleData(String url) throws Exception {
         return (ArrayList) list;
     }
 
+    /**
+     * Update Progress.
+     * @param id
+     * @param error
+     * @param progress
+     * @return true / false.
+     * @throws Exception
+     */
     public boolean updateProgress(int id, String error, String progress) throws Exception {
         String sql = "UPDATE scheduler SET progress=?,error=? WHERE id=?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {

@@ -74,15 +74,10 @@ public class MainUI {
     }
 
     @FXML
-
     public static void closeStage(String path) throws IOException {
         defaultFilePath = path;
         System.out.print(defaultFilePath);
         stage.close();
     }
 
-    public static TextField getTextField(String id) throws IOException {
-        TextField textField = (TextField) scene.lookup(id);
-        return textField;
-    }
 }

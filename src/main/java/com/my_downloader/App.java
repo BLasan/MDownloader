@@ -29,6 +29,11 @@ public class App extends Application {
     public static Connection connection;
     public static List<DownloadDataList> dataList;
 
+    /**
+     * Start FX app.
+     * @param stage
+     * @throws IOException
+     */
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("mainUi"), 660, 520);
         String css = this.getClass().getResource("fxml.css").toExternalForm();
@@ -45,20 +50,19 @@ public class App extends Application {
         }
     }
 
-    public static Button getButtonElement(String id) throws IOException {
-        Button btn = (Button) scene.lookup(id);
-        return  btn;
-    }
-    
+    /**
+     * Initialized DB_CONFIG.
+     * @throws Exception
+     */
     public static void DBCONFIG() throws Exception {
         connection = DB_Config.init_db();
     }
 
-    public static TextField getTextField(String id) throws IOException {
-        TextField textField = (TextField) scene.lookup(id);
-        return textField;
-    }
-
+    /**
+     * Get the platform of FX UI.
+     * @return primary stage.
+     * @throws IOException
+     */
     public static Stage getStage() throws  IOException {
         return primaryStage;
     }
@@ -67,6 +71,11 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /**
+     * Get Available data continuously.
+     * @param isRunning
+     * @throws Exception
+     */
     public static void readDB(boolean isRunning) throws Exception {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -83,11 +92,21 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Load FXML.
+     * @param fxml
+     * @return Parent node.
+     * @throws IOException
+     */
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+     * Main method.
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }

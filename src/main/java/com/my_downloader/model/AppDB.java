@@ -17,6 +17,11 @@ public class AppDB {
     public static Connection connection = App.connection;
     public static List<DownloadDataList> dataList = new ArrayList();
 
+    /**
+     * Get Downloadable data.
+     * @return Download List.
+     * @throws Exception
+     */
     public List returnDownloadData() throws Exception {
         java.util.Date today = new java.util.Date();
         try {

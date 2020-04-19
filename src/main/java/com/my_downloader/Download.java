@@ -24,6 +24,9 @@ public class Download implements  Runnable{
        this.id = id;
     }
 
+    /**
+     * Run Thread.
+     */
     @Override
     public void run() {
         try {
