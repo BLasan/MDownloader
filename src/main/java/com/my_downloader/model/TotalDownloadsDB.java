@@ -16,6 +16,11 @@ public class TotalDownloadsDB {
     public static Connection connection = App.connection;
     public List<DownloadDataList> downloadDataList = new ArrayList();
 
+    /**
+     * Return Completed Downloads.
+     * @return DownloadDataList List.
+     * @throws Exception
+     */
     public List<DownloadDataList> returnSchedule() throws Exception {
         String sql = "SELECT * from scheduler where progress!="+"'Not Started'";
 

@@ -11,6 +11,15 @@ public class TableDataList {
     public SimpleStringProperty time;
     public SimpleStringProperty progress;
 
+    /**
+     * Initialized Data List.
+     * @param id
+     * @param url
+     * @param date
+     * @param time
+     * @param progress
+     * @param isNotify
+     */
     public TableDataList(int id, String url, Date date, String time, String progress, boolean isNotify) {
         this.id = new SimpleStringProperty(String.valueOf(id));
         this.url = new SimpleStringProperty(url);

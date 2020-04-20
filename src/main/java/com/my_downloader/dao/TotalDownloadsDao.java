@@ -7,6 +7,11 @@ import java.util.List;
 
 public class TotalDownloadsDao {
 
+    /**
+     * Get Completed Data.
+     * @return List.
+     * @throws Exception
+     */
     public List<DownloadDataList> returnSchedule() throws Exception {
         return new TotalDownloadsDB().returnSchedule();
     }
