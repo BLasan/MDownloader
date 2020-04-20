@@ -27,6 +27,8 @@ public class MainUI {
     public DatePicker downloadDate;
     @FXML
     public CheckBox downloadNotify;
+    @FXML
+    public MenuItem totalDownloads;
 
     @FXML
     public void initialize() throws IOException {
@@ -71,6 +73,16 @@ public class MainUI {
         defaultFilePath = path;
         System.out.print(defaultFilePath);
         stage.close();
+    }
+
+    @FXML
+    public void openTotalDownloads(ActionEvent actionEvent) throws Exception {
+        parent = FXMLLoader.load(App.class.getResource("totalDownloads.fxml"));
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setTitle("Downloaded Items");
+        stage.show();
     }
 
 }

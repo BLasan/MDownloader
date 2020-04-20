@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="496.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.my_downloader.TotalDownloads">
+   <children>
+      <TableView fx:id="tableView" editable="true" layoutX="23.0" layoutY="110.0" prefHeight="349.0" prefWidth="606.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="110.0">
+        <columns>
+          <TableColumn prefWidth="172.0" text="URL" fx:id="downloadUrl" />
+            <TableColumn minWidth="0.0" prefWidth="208.0" text="Date" fx:id="downloadDate" />
+            <TableColumn editable="false" prefWidth="175.0" text="Progress" fx:id="downloadProgress" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="137.0" layoutY="31.0" prefHeight="46.0" prefWidth="369.0" text="Download Summary" textAlignment="CENTER" textFill="#208386" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="31.0">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
