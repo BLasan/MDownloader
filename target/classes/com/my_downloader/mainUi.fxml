@@ -36,7 +36,7 @@
             <Menu mnemonicParsing="false" text="View">
                <items>
                   <MenuItem mnemonicParsing="false" text="Total Downloads" fx:id="totalDownloads" onAction="#openTotalDownloads" />
-                  <MenuItem mnemonicParsing="false" text="Disk Usage" />
+                  <MenuItem mnemonicParsing="false" text="Disk Usage" fx:id="diskUsage" onAction="#viewDiskUsage" />
                   <MenuItem mnemonicParsing="false" text="Schedule" />
                </items>
             </Menu>

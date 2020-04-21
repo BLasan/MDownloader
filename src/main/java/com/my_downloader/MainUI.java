@@ -85,4 +85,14 @@ public class MainUI {
         stage.show();
     }
 
+    @FXML
+    public void viewDiskUsage(ActionEvent actionEvent) throws IOException {
+        parent = FXMLLoader.load(App.class.getResource("storageStatUI.fxml"));
+        stage = new Stage();
+        scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setTitle("Storage Used");
+        stage.show();
+    }
+
 }

@@ -3,9 +3,8 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.my_downloader.StorageStatUI">
    <children>
-      <PieChart layoutX="180.0" layoutY="88.0" prefHeight="194.0" prefWidth="226.0" title="Storage Statistics" />
+      <PieChart fx:id="storageStat" animated="false" labelLineLength="15.0" layoutX="25.0" layoutY="20.0" prefHeight="359.0" prefWidth="547.0" title="Storage Statistics" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="20.0" />
    </children>
 </AnchorPane>
