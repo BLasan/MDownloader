@@ -6,7 +6,7 @@
 
 ### Prview
 
- ![](Preview_img/preview.png)
+- Will be uploaded.
 
 ### Installation
 
