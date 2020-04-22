@@ -5,11 +5,16 @@ import com.my_downloader.dao.TotalDownloadsDao;
 import com.my_downloader.model.DownloadDataList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +24,8 @@ public class TotalDownloads {
 
     public List<DownloadDataList> downloadDataList;
     public List<TableDataList> tableDataList = new ArrayList();
+    private static Parent parent;
+    @FXML public AnchorPane totalDownloadUI;
     @FXML public TableView<TableDataList> tableView;
     @FXML private TableColumn<TableDataList, String> downloadUrl;
     @FXML private TableColumn<TableDataList, String> downloadDate;
@@ -45,5 +52,11 @@ public class TotalDownloads {
         downloadDate.setCellValueFactory(dateData -> dateData.getValue().date);
         downloadProgress.setCellValueFactory(progress -> progress.getValue().progress);
         tableView.getItems().setAll(data);
+    }
+
+    @FXML
+    public void redirectToMainUI(ActionEvent actionEvent) throws IOException {
+        parent = FXMLLoader.load(App.class.getResource("mainUi.fxml"));
+        totalDownloadUI.getChildren().setAll(parent);
     }
 }

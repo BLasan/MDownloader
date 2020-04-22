@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
@@ -19,16 +20,12 @@ public class MainUI {
     private static Parent parent;
     private static Stage stage;
     private static Scene scene;
-    @FXML
-    public ComboBox downloadTime;
-    @FXML
-    public TextField downloadUrl;
-    @FXML
-    public DatePicker downloadDate;
-    @FXML
-    public CheckBox downloadNotify;
-    @FXML
-    public MenuItem totalDownloads;
+    @FXML public AnchorPane mainUI;
+    @FXML public ComboBox downloadTime;
+    @FXML public TextField downloadUrl;
+    @FXML public DatePicker downloadDate;
+    @FXML public CheckBox downloadNotify;
+    @FXML public MenuItem totalDownloads;
 
     @FXML
     public void initialize() throws IOException {
@@ -78,11 +75,12 @@ public class MainUI {
     @FXML
     public void openTotalDownloads(ActionEvent actionEvent) throws Exception {
         parent = FXMLLoader.load(App.class.getResource("totalDownloads.fxml"));
-        stage = new Stage();
-        scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.setTitle("Downloaded Items");
-        stage.show();
+        mainUI.getChildren().setAll(parent);
+//        stage = new Stage();
+//        scene = new Scene(parent);
+//        stage.setScene(scene);
+//        stage.setTitle("Downloaded Items");
+//        stage.show();
     }
 
     @FXML
