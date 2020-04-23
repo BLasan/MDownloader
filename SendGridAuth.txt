@@ -1,0 +1,4 @@
+USER_NAME = "apikey"
+PASSWORD = "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"
+SERVER_NAME = "smtp.sendgrid.net"
+PORT_NUMBER = "587"
