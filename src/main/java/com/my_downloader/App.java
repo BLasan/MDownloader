@@ -84,12 +84,14 @@ public class App extends Application {
         String timeString = dtf.format(now).substring(0,dtf.format(now).indexOf(':'));
         System.out.println(timeString);
         String time;
-        if(Integer.parseInt(timeString) <8) time = "Off-Peak";
+        boolean isNotify;
+        if(Integer.parseInt(timeString) <8) time = "Off-Peek";
         else time = "Peek";
+        System.out.println(time);
         dataList = new AppDao().returnDownloadData();
         for(int i=0;i<dataList.size();i++){
             if(time.equals(dataList.get(i).time))
-            new Thread(new Download(dataList.get(i).url,"/home/benura/Desktop/Pesuru-AL",dataList.get(i).id)).start();
+                new Thread(new Download(dataList.get(i).url, "/home/benura/Desktop", dataList.get(i).id, dataList.get(i).isNotify)).start();
             Thread.sleep(2000);
         }
     }

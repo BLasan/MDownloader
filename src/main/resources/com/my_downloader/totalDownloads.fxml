@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="totalDownloadUI" prefHeight="496.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.my_downloader.TotalDownloads">
+<AnchorPane fx:id="totalDownloadUI" prefHeight="546.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.my_downloader.TotalDownloads">
    <children>
-      <TableView fx:id="tableView" editable="true" layoutX="23.0" layoutY="110.0" prefHeight="349.0" prefWidth="606.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="110.0">
+      <TableView fx:id="tableView" editable="true" layoutX="23.0" layoutY="110.0" prefHeight="320.0" prefWidth="602.0" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="110.0">
         <columns>
           <TableColumn fx:id="downloadUrl" prefWidth="172.0" text="URL" />
             <TableColumn fx:id="downloadDate" minWidth="0.0" prefWidth="208.0" text="Date" />
@@ -36,5 +36,7 @@
             <Image url="@images/back.png" />
          </image>
       </ImageView>
+      <Label layoutX="70.0" layoutY="468.0" prefHeight="33.0" prefWidth="135.0" text="Total Downloads" textAlignment="CENTER" />
+      <Label layoutX="291.0" layoutY="468.0" prefHeight="33.0" prefWidth="67.0" fx:id="totalDownloadsCount" />
    </children>
 </AnchorPane>

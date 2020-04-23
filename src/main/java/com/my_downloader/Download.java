@@ -1,14 +1,15 @@
 package com.my_downloader;
 
 import com.my_downloader.dao.MainUIDao;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
-
 import java.io.*;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
 public class Download implements  Runnable{
     private String link;
@@ -16,12 +17,15 @@ public class Download implements  Runnable{
     private int id;
     private String progress;
     private String error;
+    private boolean isNotify;
     //private TextField textField;
 
-    public Download(String url , String filePath, int id) {
+    public Download(String url , String filePath, int id, boolean isNotify) {
        this.link = url;
        this.filePath = filePath;
        this.id = id;
+       System.out.println(isNotify);
+       this.isNotify = isNotify;
     }
 
     /**
@@ -38,6 +42,9 @@ public class Download implements  Runnable{
             String fileName = link.substring(lastIndex+1);
             filePath += "/" + fileName;
             System.out.println(httpURLConnection.getContentType());
+
+            System.out.println(isNotify);
+            if(isNotify) sendEmail();
 
             if(httpURLConnection.getContentType().equals("application/pdf")) {
                 BufferedInputStream bufferedInputStream = new BufferedInputStream(httpURLConnection.getInputStream());
@@ -83,7 +90,8 @@ public class Download implements  Runnable{
 //            }
 //            System.exit(0);
 
-        }finally {
+        }
+        finally {
            // textField.clear();
             try{
                 boolean isUpdated = new MainUIDao().updateProgress(id, error, progress);
@@ -91,6 +99,48 @@ public class Download implements  Runnable{
             }catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    /**
+     * Send Email using SendGrid.
+     * @throws Exception
+     */
+    public void sendEmail() throws Exception {
+        final String username = "apikey";
+        final String password = "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";
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.sendgrid.net");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("benuraab@gmail.com"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse("benuraab@gmail.com")
+            );
+            message.setSubject("Testing Gmail TLS");
+            message.setText("Dear Mail Crawler,"
+                    + "\n\n Please do not spam my email!");
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 

@@ -41,4 +41,20 @@ public class TotalDownloadsDB {
         System.out.println(downloadDataList.get(0));
         return downloadDataList;
     }
+
+    public int returnDownloadCount() throws Exception {
+        String sql = "SELECT COUNT(id) as TotalDownloads from scheduler where progress!='Not Started'";
+        int count = 0;
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                System.out.println(rs.getInt("TotalDownloads"));
+                count = rs.getInt("TotalDownloads");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            count = -1;
+        }
+        return count;
+    }
 }

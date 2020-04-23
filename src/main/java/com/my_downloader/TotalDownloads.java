@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -30,6 +31,7 @@ public class TotalDownloads {
     @FXML private TableColumn<TableDataList, String> downloadUrl;
     @FXML private TableColumn<TableDataList, String> downloadDate;
     @FXML private TableColumn<TableDataList, String> downloadProgress;
+    @FXML private Label totalDownloadsCount;
 
     @FXML
     public void initialize() throws Exception {
@@ -52,6 +54,12 @@ public class TotalDownloads {
         downloadDate.setCellValueFactory(dateData -> dateData.getValue().date);
         downloadProgress.setCellValueFactory(progress -> progress.getValue().progress);
         tableView.getItems().setAll(data);
+
+        int downloadCount = new TotalDownloadsDao().returnDownloadCount();
+        if(downloadCount != -1)
+        totalDownloadsCount.setText(String.valueOf(downloadCount));
+        else
+            throw new Exception();
     }
 
     @FXML

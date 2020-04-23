@@ -15,4 +15,8 @@ public class TotalDownloadsDao {
     public List<DownloadDataList> returnSchedule() throws Exception {
         return new TotalDownloadsDB().returnSchedule();
     }
+
+    public int returnDownloadCount() throws Exception {
+        return new TotalDownloadsDB().returnDownloadCount();
+    }
 }
