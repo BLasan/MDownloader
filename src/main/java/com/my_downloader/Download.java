@@ -108,7 +108,7 @@ public class Download implements  Runnable{
      */
     public void sendEmail() throws Exception {
         final String username = "apikey";
-        final String password = "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";
+        final String password = getApiSendGrid();
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.sendgrid.net");
         prop.put("mail.smtp.port", "587");
@@ -142,6 +142,21 @@ public class Download implements  Runnable{
             e.printStackTrace();
         }
 
+    }
+
+    public String getApiSendGrid() throws IOException {
+        BufferedReader bufferedReader;
+        String line,password=null;
+        bufferedReader = new BufferedReader(new FileReader("SendGridAuth.txt"));
+        while ((line = bufferedReader.readLine()) != null) {
+            if(line.contains("PASSWORD")) {
+                password = line.substring(12);
+                System.out.println(password);
+            }
+            else password = null;
+        }
+
+        return  password;
     }
 
 

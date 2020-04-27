@@ -1,8 +1,10 @@
 package com.my_downloader;
 
 import com.my_downloader.dao.AppDao;
+import com.my_downloader.dao.PathSelectorDao;
 import com.my_downloader.db_config.DB_Config;
 import com.my_downloader.model.DownloadDataList;
+import com.my_downloader.model.PathObject;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
@@ -78,21 +80,27 @@ public class App extends Application {
      * @throws Exception
      */
     public static void readDB(boolean isRunning) throws Exception {
+        String time = getTime();
+        System.out.println(time);
+        dataList = new AppDao().returnDownloadData();
+        PathObject path = new PathSelectorDao().getSelectedPath();
+        for(int i=0;i<dataList.size();i++){
+            if(time.equals(dataList.get(i).time))
+                new Thread(new Download(dataList.get(i).url, path.directory, dataList.get(i).id, dataList.get(i).isNotify)).start();
+            Thread.sleep(2000);
+        }
+    }
+
+    public static String getTime() throws Exception {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String timeString = dtf.format(now).substring(0,dtf.format(now).indexOf(':'));
         System.out.println(timeString);
         String time;
-        boolean isNotify;
         if(Integer.parseInt(timeString) <8) time = "Off-Peek";
         else time = "Peek";
-        System.out.println(time);
-        dataList = new AppDao().returnDownloadData();
-        for(int i=0;i<dataList.size();i++){
-            if(time.equals(dataList.get(i).time))
-                new Thread(new Download(dataList.get(i).url, "/home/benura/Desktop", dataList.get(i).id, dataList.get(i).isNotify)).start();
-            Thread.sleep(2000);
-        }
+
+        return time;
     }
 
     /**

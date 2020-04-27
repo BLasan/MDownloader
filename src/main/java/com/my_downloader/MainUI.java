@@ -49,6 +49,8 @@ public class MainUI {
             LocalDate today = LocalDate.now();
             downloadDate.setValue(today);
             downloadNotify.setSelected(false);
+            String timeVal = App.getTime();
+            if(timeVal.equals(time)) App.readDB(true);
         }
     }
 
