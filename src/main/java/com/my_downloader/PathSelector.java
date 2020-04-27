@@ -36,6 +36,9 @@ public class PathSelector {
         long freeSpace = new File(pathString).getFreeSpace();
         long fileSize = new File(pathString).getTotalSpace();
         long usedSpace = new File(pathString).getUsableSpace();
+        System.out.println(freeSpace);
+        System.out.println(usedSpace);
+        System.out.println(fileSize);
         new PathSelectorDao().addSelectedPath(pathString, fileSize, freeSpace, usedSpace);
         filePath.setText(pathString);
     }

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.my_downloader.StorageStatUI">
    <children>
       <PieChart fx:id="storageStat" animated="false" labelLineLength="15.0" layoutX="25.0" layoutY="20.0" prefHeight="359.0" prefWidth="547.0" title="Storage Statistics" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="20.0" />
+      <Label layoutX="20.0" layoutY="83.0" prefHeight="30.0" prefWidth="93.0" text="Free Space" />
+      <Label layoutX="20.0" layoutY="136.0" prefHeight="30.0" prefWidth="93.0" text="Used Space" />
+      <Label layoutX="20.0" layoutY="192.0" prefHeight="30.0" prefWidth="80.0" text="Total Space" />
+      <Label layoutX="142.0" layoutY="82.0" prefHeight="30.0" prefWidth="67.0" fx:id="freeSpace" />
+      <Label layoutX="142.0" layoutY="136.0" prefHeight="30.0" prefWidth="67.0" fx:id="usedSpace" />
+      <Label layoutX="142.0" layoutY="192.0" prefHeight="30.0" prefWidth="67.0" fx:id="totalSpace" />
    </children>
 </AnchorPane>
