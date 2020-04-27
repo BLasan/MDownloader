@@ -4,13 +4,10 @@ import com.my_downloader.dao.AppDao;
 import com.my_downloader.db_config.DB_Config;
 import com.my_downloader.model.DownloadDataList;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -29,6 +26,7 @@ public class App extends Application {
     public static Stage primaryStage;
     public static Connection connection;
     public static List<DownloadDataList> dataList;
+    public static HostServices hostServices;
 
     /**
      * Start FX app.
@@ -43,6 +41,7 @@ public class App extends Application {
         primaryStage = stage;
         stage.setTitle("MDownloader");
         stage.show();
+        hostServices = getHostServices();
         try{
             DBCONFIG();
             readDB(true);

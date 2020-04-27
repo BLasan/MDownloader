@@ -4,10 +4,12 @@ import com.my_downloader.TableDataList.HyperLinkCell;
 import com.my_downloader.TableDataList.TableDataList;
 import com.my_downloader.dao.TotalDownloadsDao;
 import com.my_downloader.model.DownloadDataList;
+import javafx.application.HostServices;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +31,7 @@ public class TotalDownloads {
 
     public List<DownloadDataList> downloadDataList;
     public List<TableDataList> tableDataList = new ArrayList();
+    public HostServices hostServices = App.hostServices;
     private static Parent parent;
     @FXML public AnchorPane totalDownloadUI;
     @FXML public TableView<TableDataList> tableView;
@@ -54,8 +57,15 @@ public class TotalDownloads {
 
         final ObservableList<TableDataList> data = FXCollections.observableArrayList(tableDataList);
 
-        downloadUrl.setCellValueFactory(urlData -> urlData.getValue().url);
-       // downloadUrl.setCellFactory(hyperLinkCell);
+        downloadUrl.setCellValueFactory(urlData -> {urlData.getValue().url.get().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                //System.out.println(urlData.getValue().url.get().getText());
+                hostServices.showDocument(urlData.getValue().url.get().getText());
+            }
+        });
+        return urlData.getValue().url;
+        });
         downloadDate.setCellValueFactory(dateData -> dateData.getValue().date);
         downloadProgress.setCellValueFactory(progress -> progress.getValue().progress);
         tableView.getItems().setAll(data);
