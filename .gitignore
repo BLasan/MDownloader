@@ -1,0 +1,8 @@
+# Remove .idea
+/.idea
+
+# Remove Targets
+/target
+
+# Remove SendGrid Authentication File
+/SendGridAuth.txt
