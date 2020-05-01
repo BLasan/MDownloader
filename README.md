@@ -6,7 +6,7 @@
 
 ### Prview
 
-- Will be uploaded.
+- ![](Preview_img/Downloader.gif)
 
 ### Installation
 
