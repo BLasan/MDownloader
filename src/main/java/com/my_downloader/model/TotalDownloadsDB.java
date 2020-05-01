@@ -22,7 +22,7 @@ public class TotalDownloadsDB {
      * @throws Exception
      */
     public List<DownloadDataList> returnSchedule() throws Exception {
-        String sql = "SELECT * from scheduler where progress!="+"'Not Started'";
+        String sql = "SELECT * from scheduler where progress!="+"'Not Started' and isDeleted='N'";
 
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -43,7 +43,7 @@ public class TotalDownloadsDB {
     }
 
     public int returnDownloadCount() throws Exception {
-        String sql = "SELECT COUNT(id) as TotalDownloads from scheduler where progress!='Not Started'";
+        String sql = "SELECT COUNT(id) as TotalDownloads from scheduler where progress!='Not Started' and isDeleted='N'";
         int count = 0;
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

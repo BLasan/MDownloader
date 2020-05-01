@@ -19,4 +19,6 @@ public class TotalDownloadsDao {
     public int returnDownloadCount() throws Exception {
         return new TotalDownloadsDB().returnDownloadCount();
     }
+
+
 }

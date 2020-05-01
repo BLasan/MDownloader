@@ -28,7 +28,7 @@ public class AppDB {
             java.sql.Date sqlDate = new java.sql.Date(today.getTime());
             java.sql.Date currentDate = Date.valueOf(sqlDate.toString());
             //System.out.println(currentDate.getTime());
-            String sql = "SELECT * from scheduler where date=" + currentDate.getTime() + " and progress='Not Started'";
+            String sql = "SELECT * from scheduler where date=" + currentDate.getTime() + " and progress='Not Started'" + " and isDeleted='N'";
             boolean isNotify;
             try (Statement stmt = connection.createStatement();
                  ResultSet rs = stmt.executeQuery(sql)) {

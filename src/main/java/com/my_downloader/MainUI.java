@@ -2,6 +2,7 @@ package com.my_downloader;
 
 import com.my_downloader.ComboList.ComboList;
 import com.my_downloader.dao.MainUIDao;
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 public class MainUI {
@@ -54,6 +62,16 @@ public class MainUI {
         }
     }
 
+    @FXML
+    public void deleteItems(ActionEvent actionEvent) throws IOException {
+        parent = FXMLLoader.load(App.class.getResource("deleteItem.fxml"));
+        stage = new Stage();
+        scene = new Scene(parent,700, 560);
+        stage.setScene(scene);
+        stage.setTitle("Delete Items");
+        stage.show();
+    }
+
     public void checkAvailability() throws IOException {
 
     }
@@ -67,11 +85,17 @@ public class MainUI {
         stage.show();
     }
 
-    @FXML
     public static void closeStage(String path) throws IOException {
         defaultFilePath = path;
         System.out.print(defaultFilePath);
         stage.close();
+    }
+
+    @FXML
+    public void aboutUs(ActionEvent actionEvent) throws IOException {
+        File htmlFile = new File("index.html");
+        HostServices hostServices = App.hostServices;
+        hostServices.showDocument(htmlFile.toURI().toString());
     }
 
     @FXML

@@ -17,19 +17,19 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem id="openMenu" mnemonicParsing="false" text="Open" />
-                  <MenuItem id="saveMenu" mnemonicParsing="false" text="Save" />
+<!--              <MenuItem id="openMenu" mnemonicParsing="false" text="Open" />-->
+<!--                <MenuItem id="saveMenu" mnemonicParsing="false" text="Save" />-->
                   <MenuItem id="setPathMenu" mnemonicParsing="false" onAction="#openFileSelectorUI" text="Set Path" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem id="deleteMenu" mnemonicParsing="false" text="Delete Item" />
+              <MenuItem fx:id="deleteMenu" onAction="#deleteItems" mnemonicParsing="false" text="Delete Item" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem id="aboutMenu" mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="aboutMenu" onAction="#aboutUs" mnemonicParsing="false" text="About" />
                   <MenuItem id="supportMenu" mnemonicParsing="false" text="Support" />
             </items>
           </Menu>
