@@ -16,8 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.sql.Date;
@@ -41,6 +40,16 @@ public class MainUI {
         downloadTime.setItems(FXCollections.observableArrayList(new ComboList("Peek","_peek").getItem(),new ComboList("Off-Peek","_offPeek").getItem()));
         downloadTime.setValue(new ComboList("Peek","_peek").getItem());
         downloadDate.setValue(today);
+    }
+
+    @FXML
+    public void help(ActionEvent actionEvent) throws Exception {
+        parent = FXMLLoader.load(App.class.getResource("chatUi.fxml"));
+        stage = new Stage();
+        scene = new Scene(parent,600, 560);
+        stage.setScene(scene);
+        stage.setTitle("CHAT");
+        stage.show();
     }
 
     @FXML
