@@ -28,6 +28,7 @@ public class PathSelectorDB {
             pstmt.setInt(5,1);
             // update
             pstmt.executeUpdate();
+            System.out.println("Updated");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -43,10 +44,12 @@ public class PathSelectorDB {
 
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            return new PathObject(rs.getString("path"),rs.getLong("size"),rs.getInt("id"),rs.getLong("freeSpace"),rs.getLong("usedSpace"));
+             if(rs.next())
+             return new PathObject(rs.getString("path"),rs.getLong("size"),rs.getInt("id"),rs.getLong("freeSpace"),rs.getLong("usedSpace"));
+             else return new PathObject(null,0,0,0,0);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return new PathObject("Invalid",0,0,0,0);
+             System.out.println(e.getMessage());
+             return new PathObject("Invalid",0,0,0,0);
         }
     }
 }

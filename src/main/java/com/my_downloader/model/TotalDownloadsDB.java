@@ -38,7 +38,6 @@ public class TotalDownloadsDB {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(downloadDataList.get(0));
         return downloadDataList;
     }
 

@@ -40,38 +40,51 @@ public class TotalDownloads {
     @FXML
     public void initialize() throws Exception {
         downloadDataList = new TotalDownloadsDao().returnSchedule();
-        ListIterator<DownloadDataList> listListIterator = downloadDataList.listIterator();
-        while (listListIterator.hasNext()) {
-            DownloadDataList downloadDataList = listListIterator.next();
-            int id = downloadDataList.id;
-            Date date = downloadDataList.date;
-            String time = downloadDataList.time;
-            String progress = downloadDataList.progress;
-            String url = downloadDataList.url;
-            boolean isNotify = downloadDataList.isNotify;
-            tableDataList.add(new TableDataList(id,url,date,time,progress,isNotify));
+
+        if(!downloadDataList.isEmpty()) {
+            ListIterator<DownloadDataList> listListIterator = downloadDataList.listIterator();
+            while (listListIterator.hasNext()) {
+                DownloadDataList downloadDataList = listListIterator.next();
+                int id = downloadDataList.id;
+                Date date = downloadDataList.date;
+                String time = downloadDataList.time;
+                String progress = downloadDataList.progress;
+                String url = downloadDataList.url;
+                boolean isNotify = downloadDataList.isNotify;
+                tableDataList.add(new TableDataList(id, url, date, time, progress, isNotify));
+            }
+
+            final ObservableList<TableDataList> data = FXCollections.observableArrayList(tableDataList);
+
+            downloadUrl.setCellValueFactory(urlData -> {
+                urlData.getValue().url.get().setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        //System.out.println(urlData.getValue().url.get().getText());
+                        hostServices.showDocument(urlData.getValue().url.get().getText());
+                    }
+                });
+                return urlData.getValue().url;
+            });
+            downloadDate.setCellValueFactory(dateData -> dateData.getValue().date);
+            downloadProgress.setCellValueFactory(progress -> progress.getValue().progress);
+            tableView.getItems().setAll(data);
+
+            int downloadCount = new TotalDownloadsDao().returnDownloadCount();
+            if (downloadCount != -1)
+                totalDownloadsCount.setText(String.valueOf(downloadCount));
+            else
+                throw new Exception();
         }
 
-        final ObservableList<TableDataList> data = FXCollections.observableArrayList(tableDataList);
-
-        downloadUrl.setCellValueFactory(urlData -> {urlData.getValue().url.get().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                //System.out.println(urlData.getValue().url.get().getText());
-                hostServices.showDocument(urlData.getValue().url.get().getText());
-            }
-        });
-        return urlData.getValue().url;
-        });
-        downloadDate.setCellValueFactory(dateData -> dateData.getValue().date);
-        downloadProgress.setCellValueFactory(progress -> progress.getValue().progress);
-        tableView.getItems().setAll(data);
-
-        int downloadCount = new TotalDownloadsDao().returnDownloadCount();
-        if(downloadCount != -1)
-        totalDownloadsCount.setText(String.valueOf(downloadCount));
-        else
-            throw new Exception();
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Download Items");
+            alert.setHeaderText("Warning");
+            String s ="No Items Found!";
+            alert.setContentText(s);
+            alert.show();
+        }
     }
 
     @FXML

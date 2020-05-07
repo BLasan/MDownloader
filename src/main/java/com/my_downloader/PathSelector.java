@@ -21,8 +21,11 @@ public class PathSelector {
     @FXML
     public void initialize() throws Exception {
         path = new PathSelectorDao().getSelectedPath().directory;
-        if(!path.equals("Invalid"))
+        System.out.println(path);
+        if(!"Invalid".equals(path))
         filePath.setText(path);
+        else if(path == null)
+            filePath.setText("");
         else
             throw new Exception();
     }

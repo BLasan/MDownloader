@@ -6,3 +6,6 @@
 
 # Remove SendGrid Authentication File
 /SendGridAuth.txt
+
+#Remove Help Bot
+/Help

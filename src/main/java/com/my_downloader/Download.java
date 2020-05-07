@@ -66,7 +66,7 @@ public class Download implements  Runnable{
                 progress = "Completed";
             }
             else{
-                ProcessBuilder pb = new ProcessBuilder("/usr/bin/python3.7","pyth.py",link,filePath);
+                ProcessBuilder pb = new ProcessBuilder("/usr/bin/python3.7","DownloadYouTube.py",link,filePath);
                 pb.inheritIO();
                 Process proc=pb.start();
 
