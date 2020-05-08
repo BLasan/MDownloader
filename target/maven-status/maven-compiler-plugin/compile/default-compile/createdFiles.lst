@@ -4,6 +4,7 @@ com/my_downloader/dao/AppDao.class
 com/my_downloader/MainUI.class
 com/my_downloader/TotalDownloads$1.class
 com/my_downloader/dao/MainUIDao.class
+com/my_downloader/ChatUI.class
 com/my_downloader/db_config/DB_Config.class
 module-info.class
 com/my_downloader/model/AppDB.class

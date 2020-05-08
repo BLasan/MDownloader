@@ -45,12 +45,12 @@ public class ChatUI {
     public void chat() throws Exception {
         String messageText = message.getText();
         if(messageText != null) {
-            ProcessBuilder pb = new ProcessBuilder("python3","Help/chatBot/Chat.py",messageText);
+            ProcessBuilder pb = new ProcessBuilder("python3","Help/chatBot/Chat.py");
             messageText = "YOU: "+messageText;
             stringList.add(messageText);
             pb.inheritIO();
             Process proc=pb.start();
-            System.out.println(proc.waitFor());
+           // System.out.println(proc.waitFor());
             OutputStream out = proc.getOutputStream();
             File myObj = new File("Help/chatBot/response.txt");
             Scanner myReader = new Scanner(myObj);

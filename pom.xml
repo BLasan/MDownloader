@@ -46,7 +46,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.1</version>
                 <configuration>
-                    <mainClass>org.downloader.App</mainClass>
+                    <mainClass>com.my_downloader.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>

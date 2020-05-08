@@ -11,7 +11,9 @@ public class DB_Config {
         try
         {
             // create a database connection
-            connection = DriverManager.getConnection("jdbc:sqlite:/home/benura/Desktop/My-Downloader/Downloader.db");
+            String currentDirectory = System.getProperty("user.dir");
+            String url = "jdbc:sqlite:"+currentDirectory+"/db/Downloader.db";
+            connection = DriverManager.getConnection(url);
             createTable(connection);
             //Statement statement = connection.createStatement();
             //statement.setQueryTimeout(30);

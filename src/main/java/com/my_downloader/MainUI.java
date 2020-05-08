@@ -44,12 +44,19 @@ public class MainUI {
 
     @FXML
     public void help(ActionEvent actionEvent) throws Exception {
-        parent = FXMLLoader.load(App.class.getResource("chatUi.fxml"));
-        stage = new Stage();
-        scene = new Scene(parent,600, 560);
-        stage.setScene(scene);
-        stage.setTitle("CHAT");
-        stage.show();
+//        parent = FXMLLoader.load(App.class.getResource("chatUi.fxml"));
+//        stage = new Stage();
+//        scene = new Scene(parent,600, 560);
+//        stage.setScene(scene);
+//        stage.setTitle("CHAT");
+//        stage.show();
+          String currentDirectory = System.getProperty("user.dir");
+       //   System.out.println("The current working directory is " + currentDirectory);
+          String filePath = currentDirectory+"/Help/chatBot/Chat.py";
+          //String path = App.class.getResource("Help/chatBot/Chat.py").getFile();
+          ProcessBuilder pb = new ProcessBuilder("python3",filePath);
+          pb.inheritIO();
+          pb.start();
     }
 
     @FXML
@@ -58,7 +65,7 @@ public class MainUI {
         Date date = Date.valueOf(downloadDate.getValue());
         String time = String.valueOf(downloadTime.getValue());
         boolean isNotify = downloadNotify.isSelected();
-        System.out.println(url+" "+date+" "+time+" "+isNotify);
+      //  System.out.println(url+" "+date+" "+time+" "+isNotify);
         boolean isSuccess = new MainUIDao().addScheduler(url,date,time,isNotify);
         if(isSuccess) {
             downloadTime.setValue(new ComboList("Peek","_peek").getItem());
@@ -96,15 +103,19 @@ public class MainUI {
 
     public static void closeStage(String path) throws IOException {
         defaultFilePath = path;
-        System.out.print(defaultFilePath);
+        //System.out.print(defaultFilePath);
         stage.close();
     }
 
     @FXML
     public void aboutUs(ActionEvent actionEvent) throws IOException {
-        File htmlFile = new File("index.html");
+        String currentDirectory = System.getProperty("user.dir");
+      //  System.out.println("The current working directory is " + currentDirectory);
+        String filePath = currentDirectory+"/www/index.html";
+        File htmlFile = new File(filePath);
         HostServices hostServices = App.hostServices;
         hostServices.showDocument(htmlFile.toURI().toString());
+
     }
 
     @FXML

@@ -41,9 +41,9 @@ public class Download implements  Runnable{
             int lastIndex = link.lastIndexOf("/");
             String fileName = link.substring(lastIndex+1);
             filePath += "/" + fileName;
-            System.out.println(httpURLConnection.getContentType());
+           // System.out.println(httpURLConnection.getContentType());
 
-            System.out.println(isNotify);
+          //  System.out.println(isNotify);
             if(isNotify) sendEmail();
 
             if(httpURLConnection.getContentType().equals("application/pdf")) {
@@ -82,7 +82,7 @@ public class Download implements  Runnable{
             ex.printStackTrace();
             error = "Invalid URL";
             progress = "Failed";
-            System.out.println(id);
+           // System.out.println(id);
 //            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid URL", ButtonType.OK);
 //            alert.showAndWait();
 //            if (alert.getResult() == ButtonType.OK) {
@@ -147,7 +147,9 @@ public class Download implements  Runnable{
     public String getApiSendGrid() throws IOException {
         BufferedReader bufferedReader;
         String line,password=null;
-        bufferedReader = new BufferedReader(new FileReader("SendGridAuth.txt"));
+        String currentDirectory = System.getProperty("user.dir");
+        String sendGrid = currentDirectory+"/SendGrid/SendGridAuth.txt";
+        bufferedReader = new BufferedReader(new FileReader(sendGrid));
         while ((line = bufferedReader.readLine()) != null) {
             if(line.contains("PASSWORD")) {
                 password = line.substring(12);

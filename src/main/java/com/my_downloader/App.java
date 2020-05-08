@@ -47,7 +47,6 @@ public class App extends Application {
         try{
             DBCONFIG();
             readDB(true);
-            //System.out.println(new File("/home/benura/Desktop/Pesuru-AL").getFreeSpace());
         }catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -95,7 +94,7 @@ public class App extends Application {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String timeString = dtf.format(now).substring(0,dtf.format(now).indexOf(':'));
-        System.out.println(timeString);
+       // System.out.println(timeString);
         String time;
         if(Integer.parseInt(timeString) <8) time = "Off-Peek";
         else time = "Peek";

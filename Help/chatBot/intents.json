@@ -9,20 +9,16 @@
          "responses": ["See you later, thanks for visiting", "Have a nice day", "Bye! Come back again soon."]
         },
         {"tag": "app",
+         "patterns": ["What is this app about?","What about this app?","App?"],
+         "responses": ["This is a download scheduler","You can use to download items"]
+        },
+        {"tag": "versions",
+         "patterns": ["What are the supported file formats?", "Formats?", "File types?" ],
+         "responses": ["Youtube vides,Pdf,Mp3", "Mp4,Mp3,PDF"]
+        },
+        {"tag": "thanks",
          "patterns": ["Thanks", "Thank you", "That's helpful"],
          "responses": ["Happy to help!", "Any time!", "My pleasure"]
-        },
-        {"tag": "hours",
-         "patterns": ["What hours are you open?", "What are your hours?", "When are you open?" ],
-         "responses": ["We're open every day 9am-9pm", "Our hours are 9am-9pm every day"]
-        },
-        {"tag": "payments",
-         "patterns": ["Do you take credit cards?", "Do you accept Mastercard?", "Are you cash only?" ],
-         "responses": ["We accept VISA, Mastercard and AMEX", "We accept most major credit cards"]
-        },
-        {"tag": "opentoday",
-         "patterns": ["Are you open today?", "When do you open today?", "What are your hours today?"],
-         "responses": ["We're open every day from 9am-9pm", "Our hours are 9am-9pm every day"]
         }
    ]
 }
